@@ -26,8 +26,9 @@ public class PrintableCinema3 {
     public void print() {
         printTitle();
         printTableHeader();
-        for (int rowNumber = 0; rowNumber < ROWS; rowNumber++) {
-            printRow(rowNumber);
+        int index = 1;
+        for (boolean[] row: seats) {
+            printRow(index++, row);
         }
     }
 
@@ -37,15 +38,15 @@ public class PrintableCinema3 {
 
     private void printTableHeader() {
         System.out.print(" ");
-        for (int seatNumber = 0; seatNumber < SEATS_PER_ROW; seatNumber++) {
-            System.out.print(" " + (seatNumber + 1));
+        for (int seatNumber = 1; seatNumber <= SEATS_PER_ROW; seatNumber++) {
+            System.out.print(" " + seatNumber);
         }
         System.out.println();
     }
 
-    private void printRow(int rowIndex) {
-        System.out.print(rowIndex + 1);
-        for (boolean seat: seats[rowIndex]) {
+    private void printRow(int index, boolean[] row) {
+        System.out.print(index);
+        for (boolean seat: row) {
             System.out.print(" " + (seat ? "■" : "□"));
         }
         System.out.println();
